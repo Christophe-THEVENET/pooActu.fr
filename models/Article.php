@@ -4,7 +4,6 @@
 
 
 
-
 class Article
 {
 
@@ -13,51 +12,60 @@ class Article
   private string $content;
 
 
-  public function __construct($id, $title, $content)
+
+  //  ------------ mise en place système d'hydratation de l'entité avec un tableau de données ------------
+
+  public function __construct(array $data)
   {
-    $this->id = $id;
-    $this->title = $title;
-    $this->content = $content;
+    $this->hydrate($data);
   }
 
-  
-
-
-    public function getId()
-    {
-        return $this->id;
+  public function hydrate(array $data): void
+  {
+    foreach ($data as $key => $value) {
+      // le setteur de chaque data du style setData
+      $method = 'set ' . ucfirst($key);
+      // si la méthode existe dans l'objet courant
+      method_exists($this, $method) ? $this->$method($value) : ""; // ex $this->setId(1) pour la première hydratation
     }
+  } // ---------------------------------------------------------------------
 
- 
-    public function setId($id)
-    {
-        $this->id = $id;
 
-        return $this;
-    }
+  public function getId()
+  {
+    return $this->id;
+  }
 
-    public function getTitle()
-    {
-        return $this->title;
-    }
 
-    public function setTitle($title)
-    {
-        $this->title = $title;
+  public function setId($id)
+  {
+    $this->id = $id;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    public function getContent()
-    {
-        return $this->content;
-    }
+  public function getTitle()
+  {
+    return $this->title;
+  }
 
-  
-    public function setContent($content)
-    {
-        $this->content = $content;
+  public function setTitle($title)
+  {
+    $this->title = $title;
 
-        return $this;
-    }
+    return $this;
+  }
+
+  public function getContent()
+  {
+    return $this->content;
+  }
+
+
+  public function setContent($content)
+  {
+    $this->content = $content;
+
+    return $this;
+  }
 }
