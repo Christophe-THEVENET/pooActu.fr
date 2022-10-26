@@ -1,6 +1,8 @@
 <?php
 
+use DateTime;
 
+date_default_timezone_set('UTC');
 
 
 
@@ -10,7 +12,7 @@ class Article
   private int $id;
   private string $title;
   private string $content;
-
+  private DateTime $publishedAt;
 
 
   //  ------------ mise en place système d'hydratation de l'entité avec un tableau de données ------------
@@ -37,7 +39,7 @@ class Article
   }
 
 
-  public function setId($id)
+  public function setId(int $id)
   {
     $this->id = $id;
 
@@ -49,9 +51,11 @@ class Article
     return $this->title;
   }
 
-  public function setTitle($title)
+  public function setTitle(string $title)
   {
-    $this->title = $title;
+    if (is_string($title) && strlen($title) > 3 && strlen($title) < 80) {
+      $this->title = htmlspecialchars($title);
+    }
 
     return $this;
   }
@@ -62,9 +66,22 @@ class Article
   }
 
 
-  public function setContent($content)
+  public function setContent(string $content)
   {
-    $this->content = $content;
+    if (is_string($content) && strlen($content) > 3 && strlen($content) < 500) {
+      $this->content = htmlspecialchars($content);
+    }
+    return $this;
+  }
+
+  public function getPublishedAt()
+  {
+    return $this->publishedAt;
+  }
+
+  public function setPublishedAt()
+  {
+    $this->publishedAt = new DateTime();
 
     return $this;
   }
