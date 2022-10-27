@@ -18,11 +18,10 @@ class ArticlesManager
   public function createArticle(Article $article)
   {
 
-    $req = $this->pdo->prepare("INSERT INTO `articles` (title, content, published_at) VALUES (:title, :content, :published_at)");
+    $req = $this->pdo->prepare("INSERT INTO `articles` (title, content, published_at) VALUES (:title, :content, NOW())");
 
     $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
     $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
-    $req->bindValue(":published_at", $article->getPublished_at(), PDO::PARAM_STR);
     $req->execute();
   }
 
@@ -78,7 +77,7 @@ class ArticlesManager
     while ($data = $stm->fetch(PDO::FETCH_ASSOC)) {
       $articles[] = new Article($data);
     }
-    require_once __DIR__ . '/../Templates/home.php';
+    require_once __DIR__ . '/../index.php';
     return $articles;
   }
 }

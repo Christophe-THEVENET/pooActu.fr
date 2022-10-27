@@ -1,6 +1,7 @@
 <?php
 
-require './Templates/_header.php';
+require $_SERVER['DOCUMENT_ROOT'] . 'Templates/_header.php';
+
 
 $manager = new ArticlesManager();
 $article = $manager->getArticleById($_GET['id']);
@@ -11,7 +12,7 @@ if ($_POST) {
   $manager->updateArticle($article);
   echo "
   <script>
-    window.location.href = './home.php'
+    window.location.href = '../../../index.php'
   </script>";
 }
 
@@ -26,21 +27,16 @@ ob_start();
 
 // mes en mémoire ds 1 variable tout ce qu il y a a la suite jusqu a ob_get_clean().
 
-require_once('Templates/_updateArticleForm.php'); 
+require_once('../composants/_updateArticleForm.php'); 
   
 
 /* var_dump($articles); */
 
 $content = ob_get_clean();
 
-require_once('Templates/layout.php');
+require_once('../../layout.php');
 
 
 
 
-
-
-
-
-?>
 
