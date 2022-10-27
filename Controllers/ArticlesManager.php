@@ -1,5 +1,9 @@
 <?php
 
+
+
+
+
 require_once __DIR__ . '/../Models/DatabaseConnect.php';
 
 
@@ -59,7 +63,6 @@ class ArticlesManager
 
   public function getArticleById(int $id)
   {
-
     $req = $this->pdo->prepare("SELECT * FROM `articles` WHERE  id = :id");
 
     $req->bindValue(":id", $id, PDO::PARAM_INT);
@@ -73,33 +76,12 @@ class ArticlesManager
 
   public function getAllArticles(): array
   {
-
     $stm = $this->pdo->query("SELECT * FROM `articles` ORDER BY id DESC");
-
-    /* if ($stm->execute()) {
-
-      $articles = $stm->fetchAll(PDO::FETCH_OBJ); // $users contient un tableau d'objets StdClass */
-
-
     $articles = [];
-
-    /*  $datas = $stm->fetchAll();
-
-    foreach ($datas as $data) {
-      $articles[] = new Article($data);
-    } */
-
-
     while ($data = $stm->fetch(PDO::FETCH_ASSOC)) {
       $articles[] = new Article($data);
     }
-
-
-
     require_once __DIR__ . '/../Templates/home.php';
-
-
     return $articles;
   }
 }
-/* } */
