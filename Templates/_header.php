@@ -1,6 +1,23 @@
+<?php
+// pour charger (require) automatiquement les classes Models et Controllers
+function loadClasses($class)
+{
+  // si il y a la string Manager dans le nom de ma classe alors c'est un controleur
+  if (strpos($class, 'Manager')) {
+    // on retourne la classe corespondante
+    require __DIR__ . "/../Controllers/$class.php";
+  } else {
+    require __DIR__ . "/../Models/$class.php";
+  }
+}
+// charge la classe a l 'instanciation
+spl_autoload_register("loadClasses");
+?>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">pooActu.fr</a>
+    <a class="navbar-brand" href="/home.php">pooActu.fr</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,3 +39,4 @@
     </div>
   </div>
 </nav>
+
