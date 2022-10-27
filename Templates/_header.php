@@ -20,13 +20,17 @@ spl_autoload_register("loadClasses");
     <a class="navbar-brand" href="/home.php">pooActu.fr</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
+
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 20%;">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home.php"><i class="bi bi-house"></i></a>
+        <li class="nav-item d-flex align-items-baseline">
+         
+            <a class="nav-link active mx-2" aria-current="page" href="/home.php"><i class="bi bi-house-fill"></i> Acceuil</a>
+         
         </li>
-       <!--  <li class="nav-item">
+        <!--  <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
         </li>
         <li class="nav-item">

@@ -32,11 +32,10 @@ class ArticlesManager
   public function updateArticle(Article $article)
   {
 
-    $req = $this->pdo->prepare("UPDATE `articles` SET (title = :title, content = :content, published_at = :published_at) WHERE  id = :id");
+    $req = $this->pdo->prepare("UPDATE `articles` SET title = :title, content = :content, published_at = NOW() WHERE  id = :id");
 
     $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
     $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
-    $req->bindValue(":published_at", $article->getPublished_at(), PDO::PARAM_STR);
     $req->bindValue(":id", $article->getId(), PDO::PARAM_INT);
     $req->execute();
   }
@@ -60,9 +59,10 @@ class ArticlesManager
 
   public function getArticleById(int $id)
   {
-    $req = $this->pdo->prepare("SELECT * FROM `articles` WHERE  id = :id");
+    $req = $this->pdo->query("SELECT * FROM `articles` WHERE  id = $id");
+    /*  $req = $this->pdo->prepare("SELECT * FROM `articles` WHERE  id = :id");
 
-    $req->bindValue(":id", $id, PDO::PARAM_INT);
+    $req->bindValue(":id", $id, PDO::PARAM_INT); */
     $data = $req->fetch();
     return new Article($data);
   }
