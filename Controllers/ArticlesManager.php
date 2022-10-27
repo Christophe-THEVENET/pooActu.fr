@@ -21,7 +21,7 @@ class ArticlesManager
 
     $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
     $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
-    $req->bindValue(":published_at", $article->getPublishedAt(), PDO::PARAM_STR);
+    $req->bindValue(":published_at", $article->getPublished_at(), PDO::PARAM_STR);
     $req->execute();
   }
 
@@ -35,7 +35,7 @@ class ArticlesManager
 
     $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
     $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
-    $req->bindValue(":published_at", $article->getPublishedAt(), PDO::PARAM_STR);
+    $req->bindValue(":published_at", $article->getPublished_at(), PDO::PARAM_STR);
     $req->bindValue(":id", $article->getId(), PDO::PARAM_INT);
     $req->execute();
   }
@@ -71,14 +71,35 @@ class ArticlesManager
 
   // ------------------------- RECUPERER TOUS LES ARTICLES ------------------------------
 
-  public function getAllArticles()
+  public function getAllArticles(): array
   {
 
-    $stm = $this->pdo->prepare("SELECT * FROM `articles` ORDER BY id DESC");
-    if ($stm->execute()) {
-      $articles = $stm->fetchAll(PDO::FETCH_OBJ); // $users contient un tableau d'objets StdClass
-      require_once __DIR__ . '/../Templates/home.php';
-      return $articles;
+    $stm = $this->pdo->query("SELECT * FROM `articles` ORDER BY id DESC");
+
+    /* if ($stm->execute()) {
+
+      $articles = $stm->fetchAll(PDO::FETCH_OBJ); // $users contient un tableau d'objets StdClass */
+
+
+    $articles = [];
+
+    /*  $datas = $stm->fetchAll();
+
+    foreach ($datas as $data) {
+      $articles[] = new Article($data);
+    } */
+
+
+    while ($data = $stm->fetch(PDO::FETCH_ASSOC)) {
+      $articles[] = new Article($data);
     }
+
+
+
+    require_once __DIR__ . '/../Templates/home.php';
+
+
+    return $articles;
   }
 }
+/* } */

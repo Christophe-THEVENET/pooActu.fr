@@ -1,7 +1,7 @@
     <?php
 
 
-    // pour charger (require) automatiquement les classes a l'instanciation (formulaire)
+    // pour charger (require) automatiquement les classes Models et Controllers
     function loadClasses($class)
     {
       // si il y a la string Manager dans le nom de ma classe alors c'est un controleur
@@ -15,11 +15,10 @@
     // charge la classe a l 'instanciation
     spl_autoload_register("loadClasses");
 
-    require  "./Controllers/ArticlesManager.php";
 
 
     $manager = new ArticlesManager();
 
     $articles = $manager->getAllArticles();
 
-    
+ 

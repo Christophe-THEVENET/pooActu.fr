@@ -1,6 +1,6 @@
 <?php
 
-use DateTime;
+
 
 date_default_timezone_set('UTC');
 
@@ -12,7 +12,7 @@ class Article
   private int $id;
   private string $title;
   private string $content;
-  private DateTime $publishedAt;
+   private ?string $published_at; 
 
 
   //  ------------ mise en place système d'hydratation de l'entité avec un tableau de données ------------
@@ -26,9 +26,9 @@ class Article
   {
     foreach ($data as $key => $value) {
       // le setteur de chaque data du style setData
-      $method = 'set ' . ucfirst($key);
+      $method = 'set' . ucfirst($key);
       // si la méthode existe dans l'objet courant
-      method_exists($this, $method) ? $this->$method($value) : ""; // ex $this->setId(1) pour la première hydratation
+      method_exists($this, $method) ? $this->$method($value) : null; // ex $this->setId(1) pour la première hydratation
     }
   } // ---------------------------------------------------------------------
 
@@ -68,21 +68,32 @@ class Article
 
   public function setContent(string $content)
   {
-    if (is_string($content) && strlen($content) > 3 && strlen($content) < 500) {
+    if (is_string($content) && strlen($content) > 3 && strlen($content) < 5500) {
       $this->content = htmlspecialchars($content);
     }
     return $this;
   }
 
-  public function getPublishedAt()
+
+
+
+  public function getPublished_at()
   {
-    return $this->publishedAt;
+    
+    return $this->published_at;
   }
 
-  public function setPublishedAt()
+
+  public function setPublished_at(?string $published_at)
   {
-    $this->publishedAt = new DateTime();
+
+    if ($published_at) {
+
+      $this->published_at = $published_at;
+    } else {
+      return null;
+    }
 
     return $this;
-  }
+  } 
 }
