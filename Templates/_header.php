@@ -1,3 +1,17 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pooActus</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+
+
+
+
+
+
 <?php
 // pour charger (require) automatiquement les classes Models et Controllers
 function loadClasses($class)
@@ -26,9 +40,7 @@ spl_autoload_register("loadClasses");
     <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 20%;">
       <ul class="navbar-nav">
         <li class="nav-item d-flex align-items-baseline">
-         
             <a class="nav-link active mx-2" aria-current="page" href="/home.php"><i class="bi bi-house-fill"></i> Acceuil</a>
-         
         </li>
         <!--  <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
