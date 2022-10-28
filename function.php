@@ -1,7 +1,7 @@
 <?php
 
 
-// pour charger (require) automatiquement les classes Models et Controllers
+// ******************** pour charger (require) automatiquement les classes Models et Controllers ********************
 function loadClasses($class)
 {
   // si il y a la string Manager dans le nom de ma classe alors c'est un controleur
@@ -19,7 +19,7 @@ spl_autoload_register("loadClasses");
 
 
 
-// formater les dates en français 
+// ******************* formater les dates en français ******************************
 function formatDateInFrench($date)
 {
     setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR@euro', 'fr_FR.utf8', 'fr-FR', 'fra');
@@ -30,3 +30,4 @@ function formatDateInFrench($date)
     $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::SHORT);
     return $formatter->format($dateTimestamp);
 }
+

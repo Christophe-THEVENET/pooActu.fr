@@ -17,9 +17,7 @@ class ArticlesManager
 
   public function createArticle(Article $article)
   {
-
     $req = $this->pdo->prepare("INSERT INTO `articles` (title, content, published_at) VALUES (:title, :content, NOW())");
-
     $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
     $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
     $req->execute();
@@ -30,9 +28,7 @@ class ArticlesManager
 
   public function updateArticle(Article $article)
   {
-
     $req = $this->pdo->prepare("UPDATE `articles` SET title = :title, content = :content, published_at = NOW() WHERE  id = :id");
-
     $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
     $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
     $req->bindValue(":id", $article->getId(), PDO::PARAM_INT);
@@ -45,10 +41,8 @@ class ArticlesManager
 
   public function deleteArticle(int $id)
   {
-
     $req = $this->pdo->prepare("DELETE FROM `articles` WHERE  id = :id");
-
-    $req->bindValue(":id", $id, PDO::PARAM_INT);
+    $req->bindValue(":id", $_GET['id'], PDO::PARAM_INT);
     $req->execute();
   }
 
@@ -58,11 +52,12 @@ class ArticlesManager
 
   public function getArticleById(int $id)
   {
-    $req = $this->pdo->query("SELECT * FROM `articles` WHERE  id = $id");
-    /*  $req = $this->pdo->prepare("SELECT * FROM `articles` WHERE  id = :id");
-
-    $req->bindValue(":id", $id, PDO::PARAM_INT); */
-    $data = $req->fetch();
+    /* $req = $this->pdo->query("SELECT * FROM `articles` WHERE  id = $id"); */
+    $req = $this->pdo->prepare("SELECT * FROM `articles` WHERE  id = :id");
+    $req->bindValue(":id", $id, PDO::PARAM_INT);
+    $data = $req->fetchAll(PDO::FETCH_ASSOC);
+    var_dump($data);
+    exit;
     return new Article($data);
   }
 

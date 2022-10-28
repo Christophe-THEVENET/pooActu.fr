@@ -6,12 +6,8 @@ require $_SERVER['DOCUMENT_ROOT'] . 'Templates/_header.php';
 if ($_POST) {
 
   $manager = new ArticlesManager();
-
   $data = $_POST;
   $article = new Article($data);
-/* 
-var_dump($article);
-exit; */
 
 
   $manager->createArticle($article);
@@ -23,7 +19,7 @@ exit; */
 }
 
 
-// ********* TEMPLATE MAJ D'UN ARTICLE **************
+// ********* TEMPLATE CREATION D'UN ARTICLE **************
 
 $title = null;
 

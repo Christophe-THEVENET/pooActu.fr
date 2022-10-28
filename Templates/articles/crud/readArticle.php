@@ -1,7 +1,6 @@
 <?php
 
 require $_SERVER['DOCUMENT_ROOT'] . 'Templates/_header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] .  'function.php';
 
 $manager = new ArticlesManager();
 $article = $manager->getArticleById($_GET['id']);
