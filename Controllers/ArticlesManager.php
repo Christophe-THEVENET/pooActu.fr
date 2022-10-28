@@ -52,12 +52,10 @@ class ArticlesManager
 
   public function getArticleById(int $id)
   {
-    /* $req = $this->pdo->query("SELECT * FROM `articles` WHERE  id = $id"); */
     $req = $this->pdo->prepare("SELECT * FROM `articles` WHERE  id = :id");
-    $req->bindValue(":id", $id, PDO::PARAM_INT);
-    $data = $req->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($data);
-    exit;
+    $req->bindParam(":id", $id, PDO::PARAM_INT);
+    $req->execute();
+    $data = $req->fetch(PDO::FETCH_ASSOC);
     return new Article($data);
   }
 
@@ -67,7 +65,7 @@ class ArticlesManager
 
   public function getAllArticles(): array
   {
-    $stm = $this->pdo->query("SELECT * FROM `articles` ORDER BY id DESC");
+    $stm = $this->pdo->query("SELECT * FROM `articles` ORDER BY published_at DESC");
     $articles = [];
     while ($data = $stm->fetch(PDO::FETCH_ASSOC)) {
       $articles[] = new Article($data);
