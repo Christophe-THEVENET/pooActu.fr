@@ -9,7 +9,7 @@ class Article
   private int $id;
   private string $title;
   private string $content;
-   private ?string $published_at; 
+  private ?string $published_at;
 
 
   //  ------------ mise en place système d'hydratation de l'entité avec un tableau de données ------------
@@ -23,9 +23,9 @@ class Article
   {
     foreach ($data as $key => $value) {
       // le setteur de chaque data du style setData
-      $method = 'set' . ucfirst($key);
-      // si la méthode existe dans l'objet courant
-      method_exists($this, $method) ? $this->$method($value) : null; // ex $this->setId(1) pour la première hydratation
+      $method = 'set' . ucfirst($key); // setTitle / setContent
+      // si la méthode existe dans l'objet courant on l'execute avec la valeur du tableau de data en parametre
+      method_exists($this, $method) ? $this->$method($value) : null; //   ex: $this->setTitle($_POST['content']) 
     }
   } // ---------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ class Article
 
   public function getPublished_at()
   {
-    
+
     return $this->published_at;
   }
 
@@ -92,5 +92,5 @@ class Article
     }
 
     return $this;
-  } 
+  }
 }
