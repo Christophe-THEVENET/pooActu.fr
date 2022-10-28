@@ -30,3 +30,5 @@ foreach ($articles as $article) {
 $content = ob_get_clean();
 
 require_once('./Templates/layout.php');
+
+
