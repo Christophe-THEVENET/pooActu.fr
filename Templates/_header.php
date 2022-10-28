@@ -21,7 +21,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 20%;">
         <ul class="navbar-nav">
-        <a href="<?php $_SERVER['DOCUMENT_ROOT']?>index.php" class="btn btn-dark mx-2"><i class="bi bi-card-checklist"></i>Liste des articles</a>
+        <a href="/index.php" class="btn btn-dark mx-2"><i class="bi bi-card-checklist"></i>Liste des articles</a>
           <a href="<?php $_SERVER['DOCUMENT_ROOT']?>Templates/articles/crud/createArticle.php" class="btn btn-success mx-2"><i class="bi bi-plus-circle-fill"></i> Ajouter un article</a>
           <!--  <li class="nav-item">
           <a class="nav-link" href="#">Features</a>

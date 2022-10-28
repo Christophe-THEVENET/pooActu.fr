@@ -12,9 +12,6 @@
     <a href="<?php $_SERVER['DOCUMENT_ROOT']?>Templates/articles/crud/updateArticle.php?id=<?= $article->getId() ?>" class="btn text-info"><i class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier l'article"></i></a>
      <!-- icon supp-->
     <a href="<?php $_SERVER['DOCUMENT_ROOT']?>Templates/articles/crud/deleteArticle.php?id=<?= $article->getId() ?>" class="btn text-danger"><i class="bi bi-x-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Supprimer l'article"></i></a>
-
-    <!-- 
-          <a href="#" class="card-link">Another link</a> -->
   </div>
 </div>
 

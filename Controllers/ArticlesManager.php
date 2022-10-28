@@ -65,7 +65,7 @@ class ArticlesManager
 
   public function getAllArticles(): array
   {
-    $stm = $this->pdo->query("SELECT * FROM `articles` ORDER BY published_at DESC");
+    $stm = $this->pdo->query("SELECT * FROM articles ORDER BY published_at DESC");
     $articles = [];
     while ($data = $stm->fetch(PDO::FETCH_ASSOC)) {
       $articles[] = new Article($data);

@@ -24,11 +24,8 @@ foreach ($articles as $article) {
 }
 
 
-
-/* var_dump($articles); */
-
 $content = ob_get_clean();
 
-require_once('./Templates/layout.php');
+require_once $_SERVER['DOCUMENT_ROOT'] . 'Templates/layout.php';
 
 
